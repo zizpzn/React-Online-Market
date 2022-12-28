@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { login, logout, onUserStateChange } from "../api/firebase";
+import User from "./User";
 
 const Navbar = () => {
   const [user, setUser] = useState();
@@ -13,10 +14,10 @@ const Navbar = () => {
   }, []);
 
   const handleLogin = () => {
-    login().then(setUser);
+    login();
   };
   const handleLogout = () => {
-    logout().then(setUser);
+    logout();
   };
 
   return (
@@ -28,6 +29,7 @@ const Navbar = () => {
         <Link to="/products">Products</Link>
         <Link to="/cart">Cart</Link>
         <Link to="/products/new" className="text-2xl"></Link>
+        {user && <User user={user} />}
         {!user && <button onClick={handleLogin}>Login</button>}
         {user && <button onClick={handleLogout}>Logout</button>}
       </nav>

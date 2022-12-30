@@ -8,7 +8,7 @@ import Button from "./ui/Button";
 import { useAuthContext } from "./context/AuthContext";
 
 const Navbar = () => {
-  const { user, login, logout } = useAuthContext;
+  const { user, login, logout } = useAuthContext();
 
   return (
     <header className="flex justify-between border-b border-gray-300 p-2">

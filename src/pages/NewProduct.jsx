@@ -1,21 +1,27 @@
 import React, { useState } from "react";
+import { uploadImage } from "../api/uploader";
 import Button from "../components/ui/Button";
 
 const NewProduct = () => {
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (file === "file") {
+    if (name === "file") {
       setFile(files && files[0]);
+      console.log(files[0]);
       return;
     }
     setProduct((product) => ({ ...product, [name]: value }));
   };
 
-  const handleChange = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    uploadImage(file) //
+      .then((url) => {
+        console.log(url);
+      });
   };
 
   return (
